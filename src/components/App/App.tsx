@@ -6,7 +6,7 @@ import {SportEvent} from "../../types";
 const App = () => {
     const [events, setEvents] = useState<SportEvent[]>([]);
     const [currentTime, setCurrentTime] = useState(0);
-    const [currentEvent, setCurrentEvent] = useState({});
+    const [currentEvent, setCurrentEvent] = useState<SportEvent>({} as SportEvent);
     // console.log('videoData', videoData);
 
     useEffect(() => {
@@ -18,7 +18,6 @@ const App = () => {
         // console.log('e.target.currentTime', Math.floor(e.target.currentTime));
         setCurrentTime(Math.floor(e.target.currentTime));
         const closestEvent = events.find(e => e.time === 3);
-
         if (closestEvent) console.log('closestEvent', closestEvent);
     }, []);
 
@@ -27,10 +26,13 @@ const App = () => {
         const closestEvent = events.find((e: SportEvent): boolean => e.time === currentTime);
         if (closestEvent) {
             console.log('closestEvent', closestEvent);
-            setCurrentEvent(closestEvent as any);
-            setTimeout(() => setCurrentEvent(''), 3000);
+            setCurrentEvent(closestEvent as SportEvent);
+            // setTimeout(() => setCurrentEvent(''), 3000);
         }
     }, [currentTime, events]);
+    const isObject = (obj: Record<string, any>): boolean => {
+        return Object.keys(obj).length > 0
+    }
 
     return (
         <div>
@@ -42,7 +44,7 @@ const App = () => {
                 {/*{currentEvent && <div className="popup-text">{currentEvent}</div>}*/}
             </video>
             <div className="events">{currentTime}</div>
-            {/*{currentEvent && <div>{currentEvent}</div>}*/}
+            {isObject(currentEvent) ? <div>{currentEvent.id}</div> : null}
         </div>
     );
 };
