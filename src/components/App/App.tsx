@@ -1,34 +1,32 @@
 import React, {useCallback, useEffect, useState} from "react";
-import videoData from '../../../server/videoData.json'
-import {SportEvent} from "@/types";
+import type {SportEvent} from "@/types";
 import NotificationCard from "@/components/NotificationCard/NotificationCard";
-
 
 const App = () => {
     const [events, setEvents] = useState<SportEvent[]>([]);
     const [currentTime, setCurrentTime] = useState(0);
     const [currentEvents, setCurrentEvents] = useState<SportEvent[]>([]);
 
-    useEffect(() => {
-        setEvents(videoData.events as SportEvent[])
-        // console.log('events', events);
+    useEffect((): void => {
+        fetch('http://localhost:8081/video-data/events')
+            .then((response: Response) => response.json())
+            .then((data: SportEvent[]): void => setEvents(data))
     }, []);
 
-    const handleTimeUpdate = useCallback((e: any) => {
+    const handleTimeUpdate = useCallback((e: any): void => {
         setCurrentTime(Math.floor(e.target.currentTime));
-        const closestEvent = events.find(e => e.time === 3);
+        const closestEvent: SportEvent | undefined = events.find((e: SportEvent): boolean => e.time === 3);
         if (closestEvent) console.log('closestEvent', closestEvent);
     }, []);
 
-    useEffect(() => {
-        const closestEvent = events.find((e: SportEvent): boolean => e.time === currentTime);
+    useEffect((): void => {
+        const closestEvent: SportEvent | undefined = events.find((e: SportEvent): boolean => e.time === currentTime);
         if (closestEvent) {
             console.log('closestEvent', closestEvent);
             setCurrentEvents([...currentEvents, closestEvent]);
             // setTimeout(() => setCurrentEvent(''), 3000);
         }
     }, [currentTime, events]);
-    console.log('currentEvents', currentEvents);
 
     return (
         <div>
@@ -40,6 +38,9 @@ const App = () => {
 
             </video>
             <div className="events">{currentTime}</div>
+            {currentEvents.length > 0 &&
+                currentEvents.map((item: SportEvent) => <div>{item.id}</div>)
+            }
             {currentEvents.length > 0 &&
                 currentEvents.map((item: SportEvent) => NotificationCard(item))
             }

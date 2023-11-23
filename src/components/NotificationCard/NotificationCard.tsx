@@ -3,7 +3,6 @@ import {SportEvent} from "@/types";
 
 import styles from "./notificationCard.module.scss"
 
-
 const NotificationCard = (event: SportEvent) => {
     return (
         <div className={styles.events} key={event.id}>
