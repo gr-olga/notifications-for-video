@@ -1,14 +1,16 @@
 import React from "react";
 import {SportEvent} from "../../types";
 
+// @ts-ignore
+import styles from "./notificationCard.module.scss"
+
+
 const NotificationCard = (event: SportEvent) => {
     return (
-        <div className="events" key={event.id}>
-            <div className="events__title">{event.type}</div>
-            <p>time: {event.time}</p>
-            <h3> {event.type}</h3>
-            {event.player && <p>{event.player}</p>}
-            {event.distanceOfShot && <p> {event.distanceOfShot}</p>}
+        <div className={styles.events} key={event.id}>
+            <div className={styles.event_title}>{event.type}</div>
+            {event.player && <p> player:{event.player}</p>}
+            {event.distanceOfShot && <p> distanceOfShot: {event.distanceOfShot}</p>}
             {event.newScore && <p> New Score : {event.newScore.home} : {event.newScore.away}</p>}
         </div>
     );
