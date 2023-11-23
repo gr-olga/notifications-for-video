@@ -25,7 +25,7 @@
     "strictNullChecks": true,
     "target": "ESNext",
   },
-  "include": ["src"],
+  "include": ["src", "declaration.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
 

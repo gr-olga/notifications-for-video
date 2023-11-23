@@ -1,8 +1,7 @@
 import React, {useCallback, useEffect, useState} from "react";
 import videoData from '../../../server/videoData.json'
-import './../../types'
-import {SportEvent} from "../../types";
-import NotificationCard from "../NotificationCard/NotificationCard";
+import {SportEvent} from "@/types";
+import NotificationCard from "@/components/NotificationCard/NotificationCard";
 
 
 const App = () => {
@@ -48,3 +47,5 @@ const App = () => {
     );
 };
 export default App
+
+

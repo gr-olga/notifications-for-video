@@ -1,7 +1,6 @@
 import React from "react";
-import {SportEvent} from "../../types";
+import {SportEvent} from "@/types";
 
-// @ts-ignore
 import styles from "./notificationCard.module.scss"
 
 
