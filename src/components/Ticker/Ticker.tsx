@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {TickerItem} from "@/types";
+import styles from "./ticker.module.scss";
 
 export default function Ticker(): React.ReactElement {
     const [tickers, setTickers] = useState<TickerItem[]>([]);
@@ -9,10 +10,12 @@ export default function Ticker(): React.ReactElement {
             .then((response: Response) => response.json())
             .then((data: TickerItem[]): void => setTickers(data))
     }, []);
-    console.log(tickers)
+
     return (
-        <div>
-            {tickers.map((item: TickerItem) => <div>{item.body}</div>)}
+        <div className={styles.ticker}>
+            {tickers.map((item: TickerItem) => {
+                return <div className={styles.items}><div className={styles.item}>{item.body}</div></div>;
+            })}
         </div>
     );
 };
