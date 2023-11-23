@@ -4,8 +4,8 @@ import type {RouteParameters} from 'express-serve-static-core';
 import videoData from './videoData.json' assert { type: "json" };
 
 export const VideoDataApi = (app: Application): Application => {
-    app.get(`/video-data/ticker`, (req: Request<RouteParameters<string>, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void => {
-        console.log(`GET video data ticker`);
+    app.get(`/video-data/tickers`, (req: Request<RouteParameters<string>, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void => {
+        console.log(`GET video data tickers`);
         res.send(videoData.ticker);
     });
 

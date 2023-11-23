@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from "react";
 import type {SportEvent} from "@/types";
 import NotificationCard from "@/components/NotificationCard/NotificationCard";
+import Ticker from "@/components/Ticker/Ticker";
 
 const App = () => {
     const [events, setEvents] = useState<SportEvent[]>([]);
@@ -31,6 +32,7 @@ const App = () => {
     return (
         <div>
             <h1>Hello, let see the video</h1>
+            <Ticker/>
             <video onTimeUpdate={handleTimeUpdate} controls>
                 <source src={`http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`}
                         type="video/webm"/>
