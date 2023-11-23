@@ -21,7 +21,8 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.module\.scss$/, // Use .module.scss for CSS Modules
+                test: /\.s[a|c]ss$/i,
+                test: /\.module\.scss$/,
                 use: [
                     'style-loader',
                     {
@@ -36,13 +37,17 @@ module.exports = {
                 ],
             },
             {
-                test: /\.scss$/, // Regular SCSS files (not modules)
+                test: /\.scss$/,
+                exclude: /\.module\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.js', '.json', '.ts', '.spec.ts', '.tsx', 'jsx'],
+        alias: {
+            "@": path.resolve(__dirname, "src"),
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
