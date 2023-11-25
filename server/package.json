@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "npm run build && npm run start:nodemon",
+    "serve": "npm run build && npm run start:nodemon",
     "build": "npm run clean && npm run compile",
     "compile": "tsc && tsc-alias",
     "clean": "rimraf ./dist && rimraf ./files",
