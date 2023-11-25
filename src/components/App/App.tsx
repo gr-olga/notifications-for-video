@@ -19,14 +19,14 @@ const App = () => {
     return (
         <div className={styles.app}>
             <h1>Hello, let see the video</h1>
-            <div  className={styles.tickerContainer}><Ticker/></div>
+            <div className={styles.tickerContainer}><Ticker/></div>
+            {eventsList.length > 0 && <Notifications time={currentTime} eventsList={eventsList} /> }
             <video onTimeUpdate={handleTimeUpdate} controls>
                 <source src={`http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`}
                         type="video/webm"/>
                 <track kind="metadata" src="#" label="Key Stage 3"/>
 
             </video>
-            {eventsList.length > 0 && <Notifications time={currentTime} eventsList={eventsList} /> }
         </div>
     );
 };

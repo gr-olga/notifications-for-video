@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import type {SportEvent} from "@/types";
 import NotificationCard from "@/components/NotificationCard/NotificationCard";
+import styles from "./notifications.module.scss"
 
 type NotificationsProps = {
     time: number;
@@ -22,8 +23,7 @@ export default function Notifications({time, eventsList}: NotificationsProps) {
     }, [time])
 
     return (
-        <div>
-            {/*{ eventsObj[time] && <NotificationCard item={eventsObj[time]} /> }*/}
+        <div className={styles.notifications}>
             {notificarionsList}
         </div>
     );
