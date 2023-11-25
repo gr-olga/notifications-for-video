@@ -5,7 +5,7 @@ import Ticker from "@/components/Ticker/Ticker";
 import styles from "./app.module.scss";
 
 const App = () => {
-    const [events, setEvents] = useState<SportEvent[]>([]);
+    const [eventsList, setEvents] = useState<SportEvent[]>([]);
     const [currentTime, setCurrentTime] = useState(0);
     const [currentEvents, setCurrentEvents] = useState<SportEvent[]>([]);
 
@@ -17,18 +17,18 @@ const App = () => {
 
     const handleTimeUpdate = useCallback((e: any): void => {
         setCurrentTime(Math.floor(e.target.currentTime));
-        const closestEvent: SportEvent | undefined = events.find((e: SportEvent): boolean => e.time === 3);
+        const closestEvent: SportEvent | undefined = eventsList.find((e: SportEvent): boolean => e.time === 3);
         if (closestEvent) console.log('closestEvent', closestEvent);
     }, []);
 
     useEffect((): void => {
-        const closestEvent: SportEvent | undefined = events.find((e: SportEvent): boolean => e.time === currentTime);
+        const closestEvent: SportEvent | undefined = eventsList.find((e: SportEvent): boolean => e.time === currentTime);
         if (closestEvent) {
             console.log('closestEvent', closestEvent);
             setCurrentEvents([...currentEvents, closestEvent]);
             // setTimeout(() => setCurrentEvent(''), 3000);
         }
-    }, [currentTime, events]);
+    }, [currentTime, eventsList]);
 
     return (
         <div className={styles.app}>
