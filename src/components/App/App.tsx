@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import type {SportEvent} from "@/types";
 import NotificationCard from "@/components/NotificationCard/NotificationCard";
 import Ticker from "@/components/Ticker/Ticker";
+import styles from "./app.module.scss";
 
 const App = () => {
     const [events, setEvents] = useState<SportEvent[]>([]);
@@ -30,9 +31,9 @@ const App = () => {
     }, [currentTime, events]);
 
     return (
-        <div>
+        <div className={styles.app}>
             <h1>Hello, let see the video</h1>
-            <Ticker/>
+            <div  className={styles.tickerContainer}><Ticker/></div>
             <video onTimeUpdate={handleTimeUpdate} controls>
                 <source src={`http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`}
                         type="video/webm"/>

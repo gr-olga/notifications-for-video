@@ -1,10 +1,11 @@
 .items {
-  color: green;
+  position: absolute;
+  width: 100%;
+  color: white;
   height: 25px;
-  width: 420px;
+  background-color: rgba(1, 4, 1, .35);
 
   overflow: hidden;
-  position: relative;
 }
 .item {
   display: block;
